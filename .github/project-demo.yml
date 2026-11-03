@@ -1,0 +1,6 @@
+title: Deepfake Detector
+description: A full-stack application designed to combat misinformation, featuring a Deepfake Image Detector powered by fine-tuned vision models and an intelligent Facts Verifier Chatbot with real-time web search capabilities.
+tags: ["Hugging Face", "Next.js", "FastAPI"]
+githubLink: https://github.com/ShunDa002/deepfake-detector-website
+video: https://youtu.be/tY2LfikVe0c
+demo: https://deepfake-web-nine.vercel.app

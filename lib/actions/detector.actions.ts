@@ -1,5 +1,7 @@
 "use server";
 
+import { FASTAPI_BACKEND_URL } from "@/lib/constants";
+
 type ModelType = "vit" | "siglip";
 
 export async function detectImage(image: File, model: ModelType = "vit") {
@@ -8,10 +10,12 @@ export async function detectImage(image: File, model: ModelType = "vit") {
     const formData = new FormData();
     formData.append("file", image);
 
+    const baseUrl = process.env.FASTAPI_BACKEND_URL || FASTAPI_BACKEND_URL;
+
     // Choose endpoint based on selected model
     const endpointMap: Record<ModelType, string> = {
-      vit: `${process.env.FASTAPI_BACKEND_URL}/vit-detect`,
-      siglip: `${process.env.FASTAPI_BACKEND_URL}/siglip-detect`,
+      vit: `${baseUrl}/vit-detect`,
+      siglip: `${baseUrl}/siglip-detect`,
     };
 
     const endpoint = endpointMap[model];

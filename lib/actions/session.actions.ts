@@ -3,6 +3,7 @@
 import { prisma } from "@/db/prisma";
 import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
+import { FASTAPI_BACKEND_URL } from "@/lib/constants";
 
 // Check if user is logged in
 export async function checkAuthStatus() {
@@ -96,7 +97,8 @@ export async function deleteSession(sessionId: string) {
 
     // Also delete from backend LangChain chat history
     try {
-      await fetch(`${process.env.FASTAPI_BACKEND_URL}/chat/${sessionId}`, {
+      const baseUrl = process.env.FASTAPI_BACKEND_URL || FASTAPI_BACKEND_URL;
+      await fetch(`${baseUrl}/chat/${sessionId}`, {
         method: "DELETE",
       });
     } catch (backendError) {

@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/assets/styles/globals.css";
-import { APP_DESCRIPTION, APP_NAME, SERVER_URL } from "@/lib/constants";
+import {
+  APP_DESCRIPTION,
+  APP_NAME,
+  FASTAPI_BACKEND_URL,
+  SERVER_URL,
+} from "@/lib/constants";
 import { ThemeProvider } from "next-themes";
+import { BackendWarmupOverlay } from "@/components/shared/backend-warmup-overlay";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +33,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <BackendWarmupOverlay backendUrl={FASTAPI_BACKEND_URL} />
           {children}
         </ThemeProvider>
       </body>
